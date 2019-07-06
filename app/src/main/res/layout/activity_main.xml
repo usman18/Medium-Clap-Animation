@@ -27,7 +27,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="#ffffff"
                         android:layout_gravity="center"
-                        android:fontFamily="sans-serif-condensed"
+                        android:fontFamily="sans-serif"
                         />
                 
         </FrameLayout>
