@@ -46,16 +46,16 @@ public class MainActivity extends AppCompatActivity {
 					.scaleY(firstClapCompleted ? 1.4f : 1.2f)
 					.setDuration(firstClapCompleted ? 125 : 225)
 					.alpha(1)
-		/*			.setListener(new Animator.AnimatorListener() {
+					.setListener(new Animator.AnimatorListener() {
 						@Override
 						public void onAnimationStart(Animator animation) {
 							riseAnimationRunning = true;
-							firstClapCompleted = true;
 						}
 						
 						@Override
 						public void onAnimationEnd(Animator animation) {
 							riseAnimationRunning = false;
+							firstClapCompleted = true;
 						}
 						
 						@Override
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 						
 						}
 					})
-		*/			.withEndAction(new Runnable() {
+					.withEndAction(new Runnable() {
 						@Override
 						public void run() {
 							
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 								.scaleX(1f)
 								.scaleY(1f)
 								.alpha(1)
-		/*						.setListener(new Animator.AnimatorListener() {
+								.setListener(new Animator.AnimatorListener() {
 									@Override
 									public void onAnimationStart(Animator animation) {
 										shrinkAnimationRunning = true;
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
 										
 									}
 								})
-		*/						.start();
+								.start();
 							
 						}
 					})
