@@ -11,13 +11,15 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 	
+	
+	
 	private int count = 0;
 	
 	private ImageView imgClap;
 	private FrameLayout clapCountLayout;
 	private TextView tvClapCount;
 	
-	private boolean clapCountVisible = false;                  //Boolean which indicate whether the clap count layout ("clap count layout")
+	private boolean firstClapCompleted = false;                  // first clap or not
 	private boolean riseAnimationRunning = false;                 // Indicates whether the first animation of the two animations is currently running or not
 	private boolean shrinkAnimationRunning = false;
 	
@@ -26,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		imgClap = findViewById(R.id.imgClap);
-		clapCountLayout = findViewById(R.id.circleLayout);
-		tvClapCount = findViewById(R.id.tvClapCount);
+		imgClap = findViewById(R.id.imgClap);                           // Clap icon on which user clicks and animation starts
+		clapCountLayout = findViewById(R.id.circleLayout);              // the frame layout enclosing the circle and the clap count text view
+		tvClapCount = findViewById(R.id.tvClapCount);                   // the text view inside "clap layout" displaying number of claps
 		
 		imgClap.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -39,16 +41,16 @@ public class MainActivity extends AppCompatActivity {
 				
 				clapCountLayout
 					.animate()
-					.translationYBy(clapCountVisible ? 0 : -130)
-					.scaleX(clapCountVisible ? 1.4f : 1.2f)
-					.scaleY(clapCountVisible ? 1.4f : 1.2f)
-					.setDuration(clapCountVisible ? 125 : 225)
+					.translationYBy(firstClapCompleted ? 0 : -130)
+					.scaleX(firstClapCompleted ? 1.4f : 1.2f)
+					.scaleY(firstClapCompleted ? 1.4f : 1.2f)
+					.setDuration(firstClapCompleted ? 125 : 225)
 					.alpha(1)
-					.setListener(new Animator.AnimatorListener() {
+		/*			.setListener(new Animator.AnimatorListener() {
 						@Override
 						public void onAnimationStart(Animator animation) {
 							riseAnimationRunning = true;
-							clapCountVisible = true;
+							firstClapCompleted = true;
 						}
 						
 						@Override
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 						
 						}
 					})
-					.withEndAction(new Runnable() {
+		*/			.withEndAction(new Runnable() {
 						@Override
 						public void run() {
 							
@@ -77,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 								.scaleX(1f)
 								.scaleY(1f)
 								.alpha(1)
-								.setListener(new Animator.AnimatorListener() {
+		/*						.setListener(new Animator.AnimatorListener() {
 									@Override
 									public void onAnimationStart(Animator animation) {
 										shrinkAnimationRunning = true;
@@ -115,11 +117,10 @@ public class MainActivity extends AppCompatActivity {
 															.animate()
 															.alpha(0f)
 															.translationYBy(-70)
-															.setDuration(150)
+															.setDuration(100)
 															.withEndAction(new Runnable() {
 																@Override
 																public void run() {
-																	
 																	
 																	clapCountLayout
 																		.animate()
@@ -143,15 +144,12 @@ public class MainActivity extends AppCompatActivity {
 										
 									}
 								})
-								.start();
+		*/						.start();
 							
 						}
 					})
 					.start();
 					
-				
-				
-				
 				
 			}
 		});
